@@ -22,12 +22,49 @@ namespace MinTwoSum.Tests
         }
 
         [Fact]
+        public void ThrowsException_ForEmptyArray()
+        {
+            int[] data = Array.Empty<int>();
+            Assert.Throws<ArgumentException>(() => MinTwoCalculator.SumTwoMinElements(data));
+        }
+
+        [Fact]
+        public void ThrowsException_ForNullInput()
+        {
+            int[]? data = null;
+            Assert.Throws<ArgumentException>(() => MinTwoCalculator.SumTwoMinElements(data));
+        }
+
+        [Fact]
+        public void ReturnsCorrectSum_ForExactlyTwoElements()
+        {
+            int[] data = { -3, 7 };
+            int result = MinTwoCalculator.SumTwoMinElements(data);
+            Assert.Equal(4, result);
+        }
+
+        [Fact]
+        public void HandlesLargeArray_Correctness()
+        {
+            const int n = 100_000_000;
+            var data = new int[n];
+            for (int i = 0; i < n; i++)
+                data[i] = 0;
+            data[100] = -200;
+            data[200] = -100;
+
+            int result = MinTwoCalculator.SumTwoMinElements(data);
+            Assert.Equal(-300, result);
+        }
+
+        [Fact]
         public void HandlesLargeArray_Performance()
         {
-            int n = 100_000_000;
+            const int n = 100_000_000;
             var data = new int[n];
             var rand = new Random(42);
-            for (int i = 0; i < n; i++) data[i] = rand.Next();
+            for (int i = 0; i < n; i++)
+                data[i] = rand.Next();
 
             var watch = System.Diagnostics.Stopwatch.StartNew();
             int result = MinTwoCalculator.SumTwoMinElements(data);

@@ -1,10 +1,11 @@
+#nullable enable
 using System;
 
 namespace MinTwoSum
 {
     public static class MinTwoCalculator
     {
-        public static int SumTwoMinElements(int[] numbers)
+        public static int SumTwoMinElements(int[]? numbers)
         {
             if (numbers == null || numbers.Length < 2)
                 throw new ArgumentException("Массив должен содержать как минимум два элемента.");
