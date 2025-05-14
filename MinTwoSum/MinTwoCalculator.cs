@@ -29,7 +29,7 @@ namespace MinTwoSum
                 }
             }
 
-            return min1 + min2;
+            return checked(min1 + min2);
         }
     }
 }
